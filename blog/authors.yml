@@ -1,0 +1,9 @@
+carlos:
+  name: Carlos Gonzalez
+  title: Chief Hacker @ CGG Labs
+  url: https://cggonzalez.com/
+  image_url: /img/cgg.jpeg
+  page: true
+  socials:
+    x: _carlosgonzal
+    github: cggonzal

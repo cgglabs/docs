@@ -1,0 +1,9 @@
+RP2040:
+  label: RP2040
+  permalink: /rp2040
+  description: RP2040 tag description
+
+FreeRTOS:
+  label: FreeRTOS
+  permalink: /freertos
+  description: FreeRTOS tag description
