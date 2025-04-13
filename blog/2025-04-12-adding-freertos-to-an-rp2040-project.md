@@ -10,6 +10,8 @@ We at CGG Labs love the RP2040 :heart:
 
 Here's how to use it with FreeRTOS to unlock the power of full preemptive scheduling.
 
+Or you can use our [template](https://github.com/cgglabs/Pico-FreeRTOS) and get on with building. 
+
 <!-- truncate -->
 
 # Adding FreeRTOS to an RP2040 Project in VSCode
@@ -43,12 +45,12 @@ Organize FreeRTOS files in your project:
 - Copy the following from the FreeRTOS repository to `FreeRTOS`:
   - `FreeRTOS/Source` (core files).
   - `FreeRTOS/Source/portable/GCC/ARM_CM0` (Cortex-M0 port for RP2040).
-  - `FreeRTOS/Source/portable/MemMang/heap_4.c` (heap_4 is a common memory manager; others like `heap_1.c` are options).
+  - `FreeRTOS/Source/portable/MemMang/heap_4.c` (heap_4 is a common memory manager; others like `heap_1.c` can also be used).
 - Copy `FreeRTOS/Source/include` to `FreeRTOS/include`.
 
 ### 3. Add FreeRTOS Configuration File
 
-Create `FreeRTOSConfig.h` in the `FreeRTOS` directory with a minimal configuration:
+Create `FreeRTOSConfig.h` in the `FreeRTOS/include` directory with a minimal configuration:
 
 ```c
 #ifndef FREERTOS_CONFIG_H
@@ -57,7 +59,7 @@ Create `FreeRTOSConfig.h` in the `FreeRTOS` directory with a minimal configurati
 #define configUSE_PREEMPTION 1
 #define configUSE_IDLE_HOOK 0
 #define configUSE_TICK_HOOK 0
-#define configCPU_CLOCK_HZ (SystemCoreClock)
+#define configCPU_CLOCK_HZ 125000000 // 125MHz
 #define configTICK_RATE_HZ ((TickType_t)1000) // 1ms tick
 #define configMAX_PRIORITIES (5)
 #define configMINIMAL_STACK_SIZE ((uint16_t)128)
@@ -76,15 +78,32 @@ Create `FreeRTOSConfig.h` in the `FreeRTOS` directory with a minimal configurati
 #define configKERNEL_INTERRUPT_PRIORITY 255
 #define configMAX_SYSCALL_INTERRUPT_PRIORITY 191
 
-/* FreeRTOS hooks */
-void vApplicationStackOverflowHook(TaskHandle_t pxTask, char *pcTaskName);
-#define configCHECK_FOR_STACK_OVERFLOW 2
-
 /* Map to Pico SDK */
 #define configUSE_TIMERS 1
 #define configTIMER_TASK_PRIORITY (configMAX_PRIORITIES - 1)
 #define configTIMER_QUEUE_LENGTH 10
 #define configTIMER_TASK_STACK_DEPTH configMINIMAL_STACK_SIZE
+
+#define configENABLE_MPU 0
+
+/* Set the following INCLUDE_* constants to 1 to include the named API function,
+ * or 0 to exclude the named API function.  Most linkers will remove unused
+ * functions even when the constant is 1. */
+#define INCLUDE_vTaskPrioritySet               1
+#define INCLUDE_uxTaskPriorityGet              1
+#define INCLUDE_vTaskDelete                    1
+#define INCLUDE_vTaskSuspend                   1
+#define INCLUDE_vTaskDelayUntil                1
+#define INCLUDE_vTaskDelay                     1
+#define INCLUDE_xTaskGetSchedulerState         1
+#define INCLUDE_xTaskGetCurrentTaskHandle      1
+#define INCLUDE_uxTaskGetStackHighWaterMark    0
+#define INCLUDE_xTaskGetIdleTaskHandle         0
+#define INCLUDE_eTaskGetState                  0
+#define INCLUDE_xTimerPendFunctionCall         0
+#define INCLUDE_xTaskAbortDelay                0
+#define INCLUDE_xTaskGetHandle                 0
+#define INCLUDE_xTaskResumeFromISR             1
 
 #endif /* FREERTOS_CONFIG_H */
 ```
@@ -106,6 +125,8 @@ add_library(freertos
     FreeRTOS/Source/tasks.c
     FreeRTOS/Source/timers.c
     FreeRTOS/Source/portable/GCC/ARM_CM0/port.c
+    FreeRTOS/Source/portable/GCC/ARM_CM0/portasm.c
+    FreeRTOS/Source/portable/GCC/ARM_CM0/mpu_wrappers_v2_asm.c
     FreeRTOS/Source/portable/MemMang/heap_4.c
 )
 
@@ -126,7 +147,7 @@ target_link_libraries(your_executable_name PRIVATE
 - Replace `your_executable_name` with your target's name (from `add_executable`).
 - Ensure `pico_stdlib` is included for Pico SDK functionality.
 
-### 5. Implement Stack Overflow Hook
+### 5. (optional) Implement Stack Overflow Hook
 
 If `configCHECK_FOR_STACK_OVERFLOW` is enabled, add the hook in your main C file or a utilities file:
 
@@ -145,13 +166,22 @@ void vApplicationStackOverflowHook(TaskHandle_t pxTask, char *pcTaskName) {
 Include FreeRTOS in your main file and create a sample task:
 
 ```c
+#include "pico/stdlib.h"
 #include <FreeRTOS.h>
 #include <task.h>
 
+#define LED_PIN 25
+
 void vTaskExample(void *pvParameters) {
+    // Initialize LED pin
+    gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, GPIO_OUT);
+
     while (1) {
-        printf("Task running\n");
-        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay 1 second
+        gpio_put(LED_PIN, 1);           // Turn LED on
+        vTaskDelay(pdMS_TO_TICKS(500)); // On for 500ms
+        gpio_put(LED_PIN, 0);           // Turn LED off
+        vTaskDelay(pdMS_TO_TICKS(500)); // Off for 500ms
     }
 }
 
@@ -168,6 +198,7 @@ int main() {
     // Should never reach here
     while (1);
 }
+
 ```
 
 ### 7. Configure VSCode Build
