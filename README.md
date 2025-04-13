@@ -20,16 +20,14 @@ This command generates static content into the `build` directory and can be serv
 
 ### Deployment
 
-Using SSH:
+Make sure to build,
 
 ```
-$ USE_SSH=true yarn deploy
+$ npm run build
 ```
 
-Not using SSH:
+Then deploy by adding and committing the files then pushing to `main`,
 
 ```
-$ GIT_USER=<Your GitHub username> yarn deploy
+$ git push origin main
 ```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
