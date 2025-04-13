@@ -16,7 +16,6 @@
         <content type="html"><![CDATA[<p>We at CGG Labs love the RP2040 <!-- -->❤️</p>
 <p>Here's how to use it with FreeRTOS to unlock the power of full preemptive scheduling.</p>
 <p>Or you can use our <a href="https://github.com/cgglabs/Pico-FreeRTOS" target="_blank" rel="noopener noreferrer">template</a> and get on with building.</p>
-<p>This guide walks you through integrating FreeRTOS into an RP2040 project (e.g., Raspberry Pi Pico) using VSCode. We'll use the Pico SDK and CMake for building, ensuring a smooth setup for real-time applications.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="prerequisites">Prerequisites<a href="https://your-docusaurus-site.example.com/blog/rp2040-freertos#prerequisites" class="hash-link" aria-label="Direct link to Prerequisites" title="Direct link to Prerequisites">​</a></h2>
 <ul>
 <li><strong>Pico SDK</strong>: Installed and configured.</li>
