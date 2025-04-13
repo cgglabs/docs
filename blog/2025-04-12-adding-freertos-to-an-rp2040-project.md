@@ -10,9 +10,8 @@ We at CGG Labs love the RP2040 :heart:
 
 Here's how to use it with FreeRTOS to unlock the power of full preemptive scheduling.
 
-Or you can use our [template](https://github.com/cgglabs/Pico-FreeRTOS) and get on with building. 
-
 <!-- truncate -->
+Or you can use our [template](https://github.com/cgglabs/Pico-FreeRTOS) and get on with building. 
 
 # Adding FreeRTOS to an RP2040 Project in VSCode
 
