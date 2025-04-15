@@ -15,8 +15,6 @@ Or you can use our [template](https://github.com/cgglabs/Pico-FreeRTOS) and get 
 
 # Adding FreeRTOS to an RP2040 Project in VSCode
 
-This guide walks you through integrating FreeRTOS into an RP2040 project (e.g., Raspberry Pi Pico) using VSCode. We'll use the Pico SDK and CMake for building, ensuring a smooth setup for real-time applications.
-
 ## Prerequisites
 
 - **Pico SDK**: Installed and configured.

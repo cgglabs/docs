@@ -7,3 +7,23 @@ FreeRTOS:
   label: FreeRTOS
   permalink: /freertos
   description: FreeRTOS tag description
+
+Motors:
+  label: Motors
+  permalink: /motors
+  description: Motors tag description
+
+Raspberry Pi Pico:
+  label: Raspberry Pi Pico
+  permalink: /raspberry-pi-pico
+  description: Raspberry Pi Pico tag description
+
+Logging:
+  label: Logging
+  permalink: /logging
+  description: Logging tag description
+
+Serial:
+  label: Serial
+  permalink: /serial
+  description: Serial tag description
