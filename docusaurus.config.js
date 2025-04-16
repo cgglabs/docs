@@ -112,7 +112,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Documentation',
+            label: 'Docs',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {to: 'https://cgglabs.com/pages/contact', label: 'Contact', position: 'left'},
