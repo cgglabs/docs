@@ -3,7 +3,7 @@ slug: rp2040-freertos
 title: Adding FreeRTOS to an RP2040 Project
 authors: carlos
 image: /img/freertos_blog_post.png
-tags: [RP2040, FreeRTOS]
+tags: [RP2040, Raspberry Pi Pico, FreeRTOS]
 ---
 
 We at CGG Labs love the RP2040 :heart: 

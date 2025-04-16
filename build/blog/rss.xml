@@ -108,6 +108,7 @@
 <li>Adjust stack and heap sizes.</li>
 </ul>]]></content:encoded>
             <category>RP2040</category>
+            <category>Raspberry Pi Pico</category>
             <category>FreeRTOS</category>
         </item>
         <item>

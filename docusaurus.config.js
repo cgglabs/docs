@@ -104,14 +104,20 @@ const config = {
         },
         items: [
           {
+            to: 'https://cgglabs.com/collections/all',
+            position: 'left',
+            label: 'Shop',
+          },
+          {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'Documentation',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
+          {to: 'https://cgglabs.com/pages/contact', label: 'Contact', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/cgglabs/docs',
             label: 'GitHub',
             position: 'right',
           },

@@ -115,6 +115,7 @@
             <uri>https://cggonzalez.com/</uri>
         </author>
         <category label="RP2040" term="RP2040"/>
+        <category label="Raspberry Pi Pico" term="Raspberry Pi Pico"/>
         <category label="FreeRTOS" term="FreeRTOS"/>
     </entry>
     <entry>
