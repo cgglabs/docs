@@ -108,13 +108,13 @@ const config = {
             position: 'left',
             label: 'Shop',
           },
+          {to: '/blog', label: 'Blog', position: 'left'},
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {to: 'https://cgglabs.com/pages/contact', label: 'Contact', position: 'left'},
           {
             href: 'https://github.com/cgglabs/docs',
