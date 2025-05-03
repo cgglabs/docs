@@ -27,3 +27,8 @@ Serial:
   label: Serial
   permalink: /serial
   description: Serial tag description
+
+FOC:
+  label: FOC
+  permalink: /foc
+  description: FOC tag description
