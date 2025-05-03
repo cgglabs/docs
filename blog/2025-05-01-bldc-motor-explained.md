@@ -63,3 +63,5 @@ This post is purposefully short because I extracted it from a different post tha
 However, the explanation was broad enough that it applied to all BLDC motors so I decided to make it its own post.
 
 Hopefully this makes the inner workings of BLDC motors a bit less mysterious.
+
+![PMSM Exploded View](/img/pmsm-exploded-view.jpg)
