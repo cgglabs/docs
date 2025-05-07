@@ -52,9 +52,9 @@
 <p><em>FOC does this by converting to a frame of reference where it is easy to control the stator current magnetic field which produces torque.</em></p>
 <p>Once you have an "easy" way of controlling the torque, you can get the motor to perform arbitrary commands.</p>
 <p>But what do I mean by "easy"?</p>
-<p>Specifically, "easy" as we will see in FOC means that we command a specific current (which produces torque) and we are able to track it as a time-invariant DC signal. This allows us to use something as simple as PID control to control the motor, even though the phase currents themselves are <em>actually</em> time-varying sinusoidal signals.</p>
+<p>Specifically, "easy" as we will see in FOC means that we command a specific current (which produces torque) and we are able to track it as a time-invariant DC signal. This allows us to use something as simple as PID control to control the motor, even though the phase currents themselves are <em>actually</em> time-varying sinusoidal signals. Therefore, instead of having to control time-varying sinusoidal signals, we can control time-invariant DC signals.</p>
 <p>That last point is worth repeating.</p>
-<p>FOC allows us to turn the difficult problem of controlling 3 time-varying sinusoidal signals into an "easy" one of controlling a time-invariant DC signal.</p>
+<p>FOC allows us to turn the difficult problem of controlling 3 time-varying sinusoidal signals into an "easy" one of controlling two time-invariant DC signals.</p>
 <p>To see more clearly how FOC does all of this, we have to dig a little deeper.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="4-digging-deeper">4. Digging deeper<a href="https://docs.cgglabs.com/blog/foc#4-digging-deeper" class="hash-link" aria-label="Direct link to 4. Digging deeper" title="Direct link to 4. Digging deeper">​</a></h2>
 <p>In this section we're going to get into the specifics of FOC along with all the math, etc.</p>
