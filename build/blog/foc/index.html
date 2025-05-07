@@ -10,7 +10,7 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.1d99d113.css">
-<script src="/assets/js/runtime~main.72d2c6ef.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.95776ea2.js" defer="defer"></script>
 <script src="/assets/js/main.92cb867c.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -50,9 +50,13 @@
 <p><strong>The core idea of FOC is to continuously adjust the stator currents so that the magnetic field they produce is always 90° orthogonal to the rotor’s field.</strong></p>
 <p>If you only take one thing away from reading this, let it be that previous statement.</p>
 <p>The goal of all of the fancy math, sensors, and PI controllers is to make sure that statement holds as close to true as possible at all times during the motor&#x27;s operation.</p>
-<p><em>FOC does this by converting to a frame of reference where it is easy to compare the stator current magnetic field to the rotor magnetic field.</em></p>
-<p>Once you have an easy way of comparing the two magnetic fields, you can start to do controls and move the stator current magnetic field so that it &quot;pushes&quot; the rotor&#x27;s magnetic field in a faster or slower way - thus varying the speed of the motor.</p>
-<p>To see more clearly how FOC is doing this, we have to dig a little deeper.</p>
+<p><em>FOC does this by converting to a frame of reference where it is easy to control the stator current magnetic field which produces torque.</em></p>
+<p>Once you have an &quot;easy&quot; way of controlling the torque, you can get the motor to perform arbitrary commands.</p>
+<p>But what do I mean by &quot;easy&quot;?</p>
+<p>Specifically, &quot;easy&quot; as we will see in FOC means that we command a specific current (which produces torque) and we are able to track it as a time-invariant DC signal. This allows us to use something as simple as PID control to control the motor, even though the phase currents themselves are <em>actually</em> time-varying sinusoidal signals.</p>
+<p>That last point is worth repeating.</p>
+<p>FOC allows us to turn the difficult problem of controlling 3 time-varying sinusoidal signals into an &quot;easy&quot; one of controlling a time-invariant DC signal.</p>
+<p>To see more clearly how FOC does all of this, we have to dig a little deeper.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="4-digging-deeper">4. Digging deeper<a href="#4-digging-deeper" class="hash-link" aria-label="Direct link to 4. Digging deeper" title="Direct link to 4. Digging deeper">​</a></h2>
 <p>In this section we&#x27;re going to get into the specifics of FOC along with all the math, etc.</p>
 <p>Our goal is to get a smoothly rotating magnetic field like this to be created by only changing the currents flowing though the 3 windings.</p>
